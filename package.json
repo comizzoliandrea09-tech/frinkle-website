@@ -1,0 +1,32 @@
+{
+  "name": "frinkle-website",
+  "version": "1.0.0",
+  "description": "Sito web interattivo e lussuoso per il brand di bevande Frinkle, con tre gusti esclusivi: - Fragola Rossa - Mela Verde   - Mirtillo Blu",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comizzoliandrea09-tech/frinkle-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/comizzoliandrea09-tech/frinkle-website/issues"
+  },
+  "homepage": "https://github.com/comizzoliandrea09-tech/frinkle-website#readme",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "react": "^19.3.0",
+    "react-bits": "^1.0.5",
+    "react-dom": "^19.3.0",
+    "react-native-web": "^0.21.2",
+    "vite": "^8.3.0"
+  }
+}
