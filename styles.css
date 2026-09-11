@@ -1,0 +1,699 @@
+/* Reset e variabili */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colori Frinkle - versioni lussuose */
+    --frinkle-red: #c41e3a;
+    --frinkle-green: #2d5d2c;
+    --frinkle-blue: #1e3a8a;
+
+    /* Varianti più chiare per effetti */
+    --frinkle-red-light: #e63946;
+    --frinkle-green-light: #4a7c59;
+    --frinkle-blue-light: #3b82f6;
+
+    /* Neutri eleganti */
+    --frinkle-dark: #1a1a1a;
+    --frinkle-light: #f8f9fa;
+    --frinkle-gray: #6c757d;
+
+    /* Trasparenze */
+    --frinkle-red-transparent: rgba(196, 30, 58, 0.1);
+    --frinkle-green-transparent: rgba(45, 93, 44, 0.1);
+    --frinkle-blue-transparent: rgba(30, 58, 138, 0.1);
+
+    /* Ombre */
+    --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+    /* Trasformazioni 3D */
+    --perspective: 1000px;
+    --rotate-speed: 15s;
+
+    /* Font */
+    --font-primary: 'Playfair Display', serif;
+    --font-secondary: 'Montserrat', sans-serif;
+}
+
+/* Font da Google Fonts - in realtà sarebbe meglio importarli, ma per semplicità definiamo fallback */
+body {
+    font-family: var(--font-secondary);
+    background-color: var(--frinkle-light);
+    color: var(--frinkle-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Container principale */
+.container {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-light);
+}
+
+.logo {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--frinkle-red), var(--frinkle-green), var(--frinkle-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--frinkle-gray);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav a:hover {
+    color: var(--frinkle-dark);
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--frinkle-red), var(--frinkle-green), var(--frinkle-blue));
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    perspective: var(--perspective);
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(135deg,
+            var(--frinkle-red-transparent) 0%,
+            var(--frinkle-green-transparent) 50%,
+            var(--frinkle-blue-transparent) 100%);
+    z-index: -2;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-content {
+    text-align: center;
+    z-index: -1;
+    position: relative;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.hero h2 {
+    font-family: var(--font-primary);
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, var(--frinkle-red), var(--frinkle-green), var(--frinkle-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--frinkle-gray);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.flavor-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--frinkle-gray);
+    transition: all 0.3s ease;
+}
+
+.indicator.strawberry { background: var(--frinkle-red); }
+.indicator.apple { background: var(--frinkle-green); }
+.indicator.blueberry { background: var(--frinkle-blue); }
+
+.indicator:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Flavors Section */
+.flavors {
+    padding: 10rem 5% 5rem;
+    background: var(--frinkle-light);
+}
+
+.flavor-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5rem;
+    gap: 4rem;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.flavor-card:nth-child(1) { animation-delay: 0.2s; }
+.flavor-card:nth-child(2) { animation-delay: 0.4s; }
+.flavor-card:nth-child(3) { animation-delay: 0.6s; }
+
+.flavor-content {
+    flex: 1;
+    max-width: 500px;
+}
+
+.flavor-content h3 {
+    font-family: var(--font-primary);
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--frinkle-dark);
+    position: relative;
+    display: inline-block;
+}
+
+.flavor-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, var(--frinkle-red), var(--frinkle-green), var(--frinkle-blue));
+}
+
+.flavor-content p {
+    font-size: 1.2rem;
+    color: var(--frinkle-gray);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.flavor-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 1rem;
+    color: var(--frinkle-gray);
+}
+
+.flavor-details span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flavor-details span::before {
+    content: '•';
+    color: var(--frinkle-red);
+}
+
+.flavor-3d {
+    flex: 1;
+    position: relative;
+    width: 300px;
+    height: 400px;
+    perspective: var(--perspective);
+}
+
+.bottle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 200px;
+    background: white;
+    border-radius: 60px 60px 10px 10px;
+    transform: translate(-50%, -50%) rotateX(20deg) rotateY(0deg);
+    box-shadow: var(--shadow-medium);
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+/* Animazioni di rotazione automatica */
+.bottle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(to bottom,
+            transparent 0%,
+            rgba(255,255,255,0.3) 30%,
+            transparent 70%,
+            transparent 100%);
+    pointer-events: none;
+    animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    60% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Colori specifici delle bottiglie */
+.strawberry-bottle {
+    border: 3px solid var(--frinkle-red);
+}
+
+.apple-bottle {
+    border: 3px solid var(--frinkle-green);
+}
+
+.blueberry-bottle {
+    border: 3px solid var(--frinkle-blue);
+}
+
+/* Liquidi */
+.liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: var(--frinkle-red);
+    border-radius: 60px 60px 0 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.strawberry-liquid { background: var(--frinkle-red); }
+.apple-liquid { background: var(--frinkle-green); }
+.blueberry-liquid { background: var(--frinkle-blue); }
+
+/* Animazione liquido che si muove */
+.liquid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(90deg,
+            transparent 0%,
+            rgba(255,255,255,0.3) 50%,
+            transparent 100%);
+    animation: liquidShine 4s ease-in-out infinite;
+}
+
+@keyframes liquidShine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Bolle */
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: floatUp 6s ease-in-out infinite;
+}
+
+.bubble:nth-child(1) {
+    width: 8px;
+    height: 8px;
+    bottom: 10%;
+    left: 20%;
+    animation-duration: 4s;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(2) {
+    width: 6px;
+    height: 6px;
+    bottom: 25%;
+    left: 70%;
+    animation-duration: 5s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(3) {
+    width: 10px;
+    height: 10px;
+    bottom: 15%;
+    left: 40%;
+    animation-duration: 6s;
+    animation-delay: 0.5s;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Hover effects sulle bottiglie */
+.flavor-card:hover .bottle {
+    transform: translate(-50%, -50%) rotateX(20deg) rotateY(15deg) rotateZ(5deg);
+    box-shadow: var(--shadow-heavy);
+    transform-origin: center;
+}
+
+.flavor-card:hover .strawberry-bottle {
+    border-color: var(--frinkle-red-light);
+}
+
+.flavor-card:hover .apple-bottle {
+    border-color: var(--frinkle-green-light);
+}
+
+.flavor-card:hover .blueberry-bottle {
+    border-color: var(--frinkle-blue-light);
+}
+
+/* Parallax effect su scroll */
+.flavor-card {
+    transform-style: preserve-3d;
+}
+
+.flavor-content {
+    transform: translateZ(50px);
+}
+
+.flavor-3d {
+    transform: translateZ(-50px);
+}
+
+/* About Section */
+.about {
+    background: var(--frinkle-dark);
+    color: var(--frinkle-light);
+    text-align: center;
+    padding: 8rem 5%;
+}
+
+.about h2 {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, var(--frinkle-red), var(--frinkle-green), var(--frinkle-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about p {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.about-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat h3 {
+    font-family: var(--font-primary);
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    background: linear-gradient(to right, var(--frinkle-red), var(--frinkle-green), var(--frinkle-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Footer */
+.footer {
+    background: var(--frinkle-dark);
+    color: var(--frinkle-light);
+    text-align: center;
+    padding: 3rem 5%;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.social-links a {
+    color: var(--frinkle-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.social-links a:hover {
+    color: var(--frinkle-red);
+}
+
+.social-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--frinkle-red);
+    transition: width 0.3s ease;
+}
+
+.social-links a:hover::after {
+    width: 100%;
+}
+
+/* Animazioni */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero h2 {
+        font-size: 3.5rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .flavor-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .flavor-content {
+        max-width: 100%;
+    }
+
+    .flavor-3d {
+        width: 250px;
+        height: 350px;
+    }
+
+    .about h2 {
+        font-size: 2.5rem;
+    }
+
+    .about p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1.5rem 5%;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+    .nav ul {
+        gap: 1.5rem;
+    }
+
+    .hero {
+        height: 80vh;
+    }
+
+    .hero h2 {
+        font-size: 2.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .flavor-card {
+        margin-bottom: 3rem;
+    }
+
+    .flavor-content h3 {
+        font-size: 2.2rem;
+    }
+
+    .flavor-content p {
+        font-size: 1.1rem;
+    }
+
+    .flavor-3d {
+        width: 200px;
+        height: 300px;
+    }
+
+    .about h2 {
+        font-size: 2rem;
+    }
+
+    .about-stats {
+        gap: 2rem;
+    }
+
+    .stat h3 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .flavor-card {
+        padding: 0 1rem;
+    }
+
+    .flavor-3d {
+        width: 180px;
+        height: 260px;
+    }
+
+    .about h2 {
+        font-size: 1.8rem;
+    }
+
+    .about p {
+        font-size: 1rem;
+    }
+
+    .about-stats {
+        flex-direction: column;
+    }
+}
