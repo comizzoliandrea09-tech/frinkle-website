@@ -4,12 +4,4 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  build: {
-    rollupOptions: {
-      external: [
-        'react-native-web',
-        'react-native-web/dist/apis/StyleSheet/registry'
-      ]
-    }
-  }
 })
