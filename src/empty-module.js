@@ -1,1 +1,5 @@
-export default function() { return {}; };
+export default function() {
+  return {
+    resolve: (style) => style
+  };
+}
