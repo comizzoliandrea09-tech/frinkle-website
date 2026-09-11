@@ -1,6 +1,5 @@
-export default function StyleRegistry() {
-  return {};
+export default function() {
+  return {
+    resolve: () => ({})
+  };
 }
-StyleRegistry.resolve = function(style) {
-  return style;
-};
