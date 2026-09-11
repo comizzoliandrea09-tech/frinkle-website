@@ -1,0 +1,1 @@
+export * from '../node_modules/react-native-web/dist/index.js';
