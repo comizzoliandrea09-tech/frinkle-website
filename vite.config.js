@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      // SOSTITUIZIONE CORRETTA: sostituisce l'import problematico con il nostro modulo vuoto
+      // SOSTITUZIONE CORRETTA: sostituisce l'import problematico con il nostro modulo vuoto
       'react-native-web/dist/apis/StyleSheet/registry': resolve(__dirname, './src/empty-module.js')
     }
   }
